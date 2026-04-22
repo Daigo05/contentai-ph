@@ -62,14 +62,14 @@ ${content.bestTime}
         <div className="flex gap-3">
           <button
             onClick={onRegenerate}
-            className="flex items-center gap-2 px-4 py-2 bg-brand-dark hover:bg-brand-purple/40 text-brand-violet rounded-lg font-medium transition-colors border border-brand-purple/30 text-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-brand-dark hover:bg-brand-violet/15 text-brand-violet rounded-lg font-medium transition-colors border border-brand-violet/40 text-sm"
           >
             <RotateCcw className="w-4 h-4" />
             Regenerate
           </button>
           <button
             onClick={handleCopy}
-            className="flex items-center gap-2 px-4 py-2 bg-brand-violet hover:bg-brand-purple text-white rounded-lg font-medium transition-colors text-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-brand-violet hover:bg-brand-accent-soft text-white rounded-lg font-medium transition-colors text-sm shadow-md shadow-brand-violet/30"
           >
             {copied ? <CheckCircle2 className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
             {copied ? 'Copied!' : 'Copy All'}

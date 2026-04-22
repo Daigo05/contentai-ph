@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-purple: #6b21a8;
-  --color-brand-violet: #8b5cf6;
-  --color-brand-dark: #120f1a;
-  --color-brand-card: #1e1b29;
+  /* Aligned with landing.html palette: dark navy + coral-orange accent */
+  --color-brand-dark: #0D0D1A;
+  --color-brand-card: #15152A;
+  --color-brand-violet: #FF6B35;  /* primary coral accent */
+  --color-brand-purple: #FF7F4F;  /* lighter coral for gradient end / hover */
+  --color-brand-accent-soft: #FF9B3F; /* warm gold for headline gradient */
 }
 
 @layer base {
@@ -23,11 +25,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-brand-purple rounded-full;
+  @apply bg-brand-violet rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-brand-violet;
+  @apply bg-brand-purple;
 }
 
 /* Smooth fade in animation */

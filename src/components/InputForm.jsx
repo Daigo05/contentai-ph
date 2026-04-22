@@ -114,7 +114,7 @@ export default function InputForm({ onGenerate, isLoading }) {
       <button
         type="submit"
         disabled={isLoading || !topic.trim()}
-        className="w-full py-4 bg-gradient-to-r from-brand-purple to-brand-violet hover:from-brand-violet hover:to-brand-purple text-white font-bold rounded-xl shadow-lg transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
+        className="w-full py-4 bg-gradient-to-r from-brand-violet to-brand-accent-soft hover:from-brand-accent-soft hover:to-brand-violet text-white font-bold rounded-xl shadow-lg shadow-brand-violet/30 transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
       >
         <Sparkles className="w-5 h-5" />
         Generate Script ✨

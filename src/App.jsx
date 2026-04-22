@@ -45,10 +45,10 @@ export default function App() {
     <div className="min-h-screen bg-brand-dark flex flex-col items-center py-12 px-4 sm:px-6">
       
       <div className="max-w-2xl w-full text-center mb-10">
-        <div className="inline-flex items-center justify-center p-3 bg-brand-purple/20 rounded-2xl mb-4">
+        <div className="inline-flex items-center justify-center p-3 bg-brand-violet/15 rounded-2xl mb-4">
           <Sparkles className="w-8 h-8 text-brand-violet" />
         </div>
-        <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-violet to-brand-purple mb-4">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-violet to-brand-accent-soft mb-4">
           ContentAI PH
         </h1>
         <p className="text-gray-400 text-lg">
