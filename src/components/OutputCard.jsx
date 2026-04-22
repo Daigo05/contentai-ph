@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
 import { Copy, CheckCircle2, RotateCcw } from 'lucide-react';
 
+function Section({ title, text, emoji }) {
+  return (
+    <div className="bg-brand-dark p-4 rounded-xl border border-brand-purple/20">
+      <h3 className="text-brand-violet font-bold mb-2 flex items-center gap-2">
+        <span>{emoji}</span> {title}
+      </h3>
+      <p className="text-gray-300 whitespace-pre-wrap">{text}</p>
+    </div>
+  );
+}
+
 export default function OutputCard({ content, onRegenerate }) {
   const [copied, setCopied] = useState(false);
 
@@ -42,15 +53,6 @@ ${content.bestTime}
     }
     setTimeout(() => setCopied(false), 2000);
   };
-
-  const Section = ({ title, text, emoji }) => (
-    <div className="bg-brand-dark p-4 rounded-xl border border-brand-purple/20">
-      <h3 className="text-brand-violet font-bold mb-2 flex items-center gap-2">
-        <span>{emoji}</span> {title}
-      </h3>
-      <p className="text-gray-300 whitespace-pre-wrap">{text}</p>
-    </div>
-  );
 
   return (
     <div className="bg-brand-card p-6 md:p-8 rounded-2xl shadow-xl space-y-6 w-full max-w-2xl mx-auto border border-brand-purple/30 animate-fade-in mt-8">
