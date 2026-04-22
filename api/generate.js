@@ -27,9 +27,21 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Server configuration error: Missing API Key' });
   }
 
-  const systemPrompt = `You are a top-tier Filipino social media content expert. Your goal is to generate highly engaging, ready-to-post content tailored to the requested platform, video type, and language.
+  // Build language-specific instructions
+  let languageInstruction;
+  if (language === 'English') {
+    languageInstruction = 'Write ENTIRELY in English. Do NOT use any Tagalog, Filipino, or Bisaya words at all. Every single word must be in English.';
+  } else if (language === 'Bisaya') {
+    languageInstruction = 'Write ENTIRELY in Bisaya (Cebuano). Use natural Bisaya as spoken in everyday conversation. You may mix in minimal English words only where a Bisaya speaker naturally would (like brand names or tech terms), but the script must be dominantly Bisaya.';
+  } else {
+    languageInstruction = 'Write in natural Taglish (Tagalog-English mix) as Filipinos actually speak in everyday conversation.';
+  }
 
-Write like a real Filipino friend texting, not like a marketing agency. Use natural Taglish. Keep it short and imperfect. Avoid corporate words like premium, signature, and experience. Say things a real tita or college student would actually say out loud. If a location is given, mention it naturally somewhere in the script. If a best selling product is given, mention it specifically by name at least once. The call to action should mention the actual location if one was provided instead of saying Insert Location.
+  const systemPrompt = `You are a top-tier Filipino social media content expert. Your goal is to generate highly engaging, ready-to-post content tailored to the requested platform and video type.
+
+CRITICAL LANGUAGE RULE: ${languageInstruction} This is non-negotiable — the user specifically chose "${language}" and the entire output MUST be in that language.
+
+Write like a real friend texting, not like a marketing agency. Keep it short and imperfect. Avoid corporate words like premium, signature, and experience. Say things a real person would actually say out loud. If a location is given, mention it naturally somewhere in the script. If a best selling product is given, mention it specifically by name at least once. The call to action should mention the actual location if one was provided instead of saying Insert Location.
 
 Please format your response strictly using the following EXACT headers so we can parse them. Do not add extra text outside these sections:
 
@@ -54,7 +66,7 @@ Please format your response strictly using the following EXACT headers so we can
   const locationLine = location?.trim() ? `\nLocation: ${location.trim()}` : '';
   const productLine = bestProduct?.trim() ? `\nBest selling product: ${bestProduct.trim()}` : '';
 
-  const userPrompt = `Topic/Business: ${topic}${locationLine}${productLine}\nPlatform: ${platform}\nVideo Type: ${videoType}\nLanguage: ${language}\n\nPlease generate the content package.`;
+  const userPrompt = `Topic/Business: ${topic}${locationLine}${productLine}\nPlatform: ${platform}\nVideo Type: ${videoType}\nLanguage: ${language}\n\nPlease generate the content package. Remember: write EVERYTHING in ${language}.`;
 
   const combinedPrompt = `${systemPrompt}\n\n---\n\n${userPrompt}`;
 
