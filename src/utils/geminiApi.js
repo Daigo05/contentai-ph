@@ -1,4 +1,4 @@
-export const generateContent = async (topic, platform, videoType, language, location, bestProduct) => {
+export const generateContent = async (topic, platform, videoType, language, location, bestProduct, additionalInfo) => {
   try {
     const response = await fetch('/api/generate', {
       method: 'POST',
@@ -11,7 +11,8 @@ export const generateContent = async (topic, platform, videoType, language, loca
         videoType,
         language,
         location,
-        bestProduct
+        bestProduct,
+        additionalInfo
       })
     });
 

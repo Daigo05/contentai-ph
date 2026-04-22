@@ -5,6 +5,7 @@ export default function InputForm({ onGenerate, isLoading }) {
   const [topic, setTopic] = useState('');
   const [location, setLocation] = useState('');
   const [bestProduct, setBestProduct] = useState('');
+  const [additionalInfo, setAdditionalInfo] = useState('');
   const [platform, setPlatform] = useState('TikTok');
   const [videoType, setVideoType] = useState('Business Ad');
   const [language, setLanguage] = useState('Taglish');
@@ -16,7 +17,7 @@ export default function InputForm({ onGenerate, isLoading }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!topic.trim()) return;
-    onGenerate({ topic, location, bestProduct, platform, videoType, language });
+    onGenerate({ topic, location, bestProduct, additionalInfo, platform, videoType, language });
   };
 
   return (
@@ -59,6 +60,19 @@ export default function InputForm({ onGenerate, isLoading }) {
           onChange={(e) => setBestProduct(e.target.value)}
           placeholder="e.g. Brown sugar milk tea, gaming chair, custom hoodies..."
           className="w-full px-4 py-3 bg-brand-dark rounded-xl border border-brand-purple/30 focus:border-brand-violet focus:ring-1 focus:ring-brand-violet outline-none transition-colors text-white placeholder-gray-500"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label className="block text-sm font-semibold text-gray-300">
+          Tell us more <span className="text-gray-500 font-normal">(optional)</span>
+        </label>
+        <textarea
+          rows={4}
+          value={additionalInfo}
+          onChange={(e) => setAdditionalInfo(e.target.value)}
+          placeholder="e.g. We've been open for 2 years, our customers are mostly students, we want to promote our new summer drinks, we want more foot traffic on weekends..."
+          className="w-full px-4 py-3 bg-brand-dark rounded-xl border border-brand-purple/30 focus:border-brand-violet focus:ring-1 focus:ring-brand-violet outline-none transition-colors text-white placeholder-gray-500 resize-none"
         />
       </div>
 

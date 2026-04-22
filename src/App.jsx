@@ -24,7 +24,8 @@ export default function App() {
         requestData.videoType,
         requestData.language,
         requestData.location,
-        requestData.bestProduct
+        requestData.bestProduct,
+        requestData.additionalInfo
       );
       setContent(result);
     } catch (err) {

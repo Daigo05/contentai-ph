@@ -20,7 +20,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const { topic, platform, videoType, language, location, bestProduct } = req.body;
+  const { topic, platform, videoType, language, location, bestProduct, additionalInfo } = req.body;
   const apiKey = process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
@@ -41,7 +41,7 @@ export default async function handler(req, res) {
 
 CRITICAL LANGUAGE RULE: ${languageInstruction} This is non-negotiable — the user specifically chose "${language}" and the entire output MUST be in that language.
 
-Write like a real friend texting, not like a marketing agency. Keep it short and imperfect. Avoid corporate words like premium, signature, and experience. Say things a real person would actually say out loud. If a location is given, mention it naturally somewhere in the script. If a best selling product is given, mention it specifically by name at least once. The call to action should mention the actual location if one was provided instead of saying Insert Location.
+Write like a real friend texting, not like a marketing agency. Keep it short and imperfect. Avoid corporate words like premium, signature, and experience. Say things a real person would actually say out loud. If a location is given, mention it naturally somewhere in the script. If a best selling product is given, mention it specifically by name at least once. The call to action should mention the actual location if one was provided instead of saying Insert Location. If additional context is provided, use it to make the script more specific, personal, and accurate to what the business actually wants to communicate.
 
 Please format your response strictly using the following EXACT headers so we can parse them. Do not add extra text outside these sections:
 
@@ -65,8 +65,9 @@ Please format your response strictly using the following EXACT headers so we can
 
   const locationLine = location?.trim() ? `\nLocation: ${location.trim()}` : '';
   const productLine = bestProduct?.trim() ? `\nBest selling product: ${bestProduct.trim()}` : '';
+  const additionalInfoLine = additionalInfo?.trim() ? `\nAdditional context: ${additionalInfo.trim()}` : '';
 
-  const userPrompt = `Topic/Business: ${topic}${locationLine}${productLine}\nPlatform: ${platform}\nVideo Type: ${videoType}\nLanguage: ${language}\n\nPlease generate the content package. Remember: write EVERYTHING in ${language}.`;
+  const userPrompt = `Topic/Business: ${topic}${locationLine}${productLine}${additionalInfoLine}\nPlatform: ${platform}\nVideo Type: ${videoType}\nLanguage: ${language}\n\nPlease generate the content package. Remember: write EVERYTHING in ${language}.`;
 
   const combinedPrompt = `${systemPrompt}\n\n---\n\n${userPrompt}`;
 
