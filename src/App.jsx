@@ -18,15 +18,13 @@ export default function App() {
     setLastRequest(requestData);
 
     try {
-      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
       const result = await generateContent(
         requestData.topic,
         requestData.platform,
         requestData.videoType,
         requestData.language,
         requestData.location,
-        requestData.bestProduct,
-        apiKey
+        requestData.bestProduct
       );
       setContent(result);
     } catch (err) {
